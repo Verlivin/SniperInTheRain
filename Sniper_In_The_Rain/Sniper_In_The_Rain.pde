@@ -5,6 +5,23 @@ void setup() {
   size(400, 400); 
   enemyin = new ENEMYIN[12];
   enemyout = new ENEMYOUT[3];
+  
+  enemyin[0] = new ENEMYIN(50,80);
+  enemyin[1] = new ENEMYIN(110,80);
+  enemyin[2] = new ENEMYIN(240,80);
+  enemyin[3] = new ENEMYIN(300,80);
+  enemyin[4] = new ENEMYIN(50,145);
+  enemyin[5] = new ENEMYIN(110,145);
+  enemyin[6] = new ENEMYIN(240,145);
+  enemyin[7] = new ENEMYIN(300,145);
+  enemyin[8] = new ENEMYIN(50,210);
+  enemyin[9] = new ENEMYIN(110,210);
+  enemyin[10] = new ENEMYIN(240,210);
+  enemyin[11] = new ENEMYIN(300,210);
+  
+  enemyout[0] = new ENEMYOUT(20,270);
+  enemyout[1] = new ENEMYOUT(200,270);
+  enemyout[2] = new ENEMYOUT(380,270);
 }
 
 void draw() {
@@ -39,48 +56,40 @@ void draw() {
   rect(185, 260, 30, 10);
   rect(365, 260, 30, 10);
   //-------------------------------split---------------------------------------------
-  enemyin[0] = new ENEMYIN(50,80);
-  enemyin[1] = new ENEMYIN(110,80);
-  enemyin[2] = new ENEMYIN(240,80);
-  enemyin[3] = new ENEMYIN(300,80);
-  enemyin[4] = new ENEMYIN(50,145);
-  enemyin[5] = new ENEMYIN(110,145);
-  enemyin[6] = new ENEMYIN(240,145);
-  enemyin[7] = new ENEMYIN(300,145);
-  enemyin[8] = new ENEMYIN(50,210);
-  enemyin[9] = new ENEMYIN(110,210);
-  enemyin[10] = new ENEMYIN(240,210);
-  enemyin[11] = new ENEMYIN(300,210);
+  
   
   for(int i = 0; i < enemyin.length; i++){
     ENEMYIN e = enemyin[i];
+    if(e.alive==true) {
     e.display();
     e.update();
   }
   
   //---------------------------------------split------------------------------
-  enemyout[0] = new ENEMYOUT(20,270);
-  enemyout[1] = new ENEMYOUT(200,270);
-  enemyout[2] = new ENEMYOUT(380,270);
-  for(int i = 0; i < enemyout.length; i++){
-    ENEMYOUT m = enemyout[i];
-    m.display();
-    m.update();
+ 
+  for(int j = 0; j < enemyout.length; j++){
+    ENEMYOUT m = enemyout[j];
+    if(m.alive==true){
+      m.display();
+      m.update();
+    }
+   }
   }
-  
 }
 //---------------------------------------split-------------------------------------
-void mousePressed() {
+void mousePressed(){
   for(int i = 0; i < enemyin.length; i++){
     ENEMYIN e = enemyin[i];
-    if (e.isClicked()) {
+    if (e.alive && e.isClicked()) {
       println("bang");
+      e.alive=false;
     }
   }
   for(int i = 0; i < enemyout.length; i++){
     ENEMYOUT m = enemyout[i];
-    if (m.isClicked()) {
+    if (m.alive && m.isClicked()) {
       println("bang");
+      m.alive=false;
     }
   }
 }

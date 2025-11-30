@@ -1,6 +1,7 @@
 class ENEMYIN{
     int x;
     int y;
+    boolean alive=true;
   ENEMYIN(int ex, int ey){
     x=ex;
     y=ey;
@@ -8,7 +9,8 @@ class ENEMYIN{
   void display(){
       fill(252, 232, 78,200);//windows
       rect(x,y,50,50);
-      stroke(0);
+      
+      stroke(0); //man
       strokeWeight(2);
       fill(0);
       ellipse(x + 25, y + 30, 12, 12);

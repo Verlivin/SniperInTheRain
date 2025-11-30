@@ -1,6 +1,7 @@
 class ENEMYOUT{
     int x;
     int y;
+    boolean alive = true;
   ENEMYOUT(int ex, int ey){
     x=ex;
     y=ey;
@@ -9,7 +10,8 @@ class ENEMYOUT{
     noStroke();
     fill(252, 232, 78, 150); //street light
     triangle(x, y, x - 30, y + 90, x + 30, y + 90);
-    stroke(0);
+    
+    stroke(0);//man
     strokeWeight(2);
     fill(0);
     ellipse(x, y + 40, 12, 12); 
