@@ -1,8 +1,11 @@
 ENEMYIN[] enemyin;//although they are both enemy, there are two types of animation of death
 ENEMYOUT[] enemyout; //so make two class is easier for me.
+SCOPE scope;
 
 void setup() {
-  size(400, 400); 
+  size(400, 400);
+  noCursor();  //hide mouse
+  scope = new SCOPE();
   enemyin = new ENEMYIN[12];
   enemyout = new ENEMYOUT[3];
   
@@ -75,6 +78,8 @@ void draw() {
     }
    }
   }
+//-------------------------------------split----------------------------------
+    scope.display();
 }
 //---------------------------------------split-------------------------------------
 void mousePressed(){
