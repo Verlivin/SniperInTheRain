@@ -1,5 +1,10 @@
+ENEMYIN enemyin;//although they are both enemy, there are two types of animation of death
+ENEMYOUT enemyout; //so make two class is easier for me.
+
 void setup() {
   size(400, 400); 
+  enemyin = new ENEMYIN();
+  enemyout = new ENEMYOUT();
 }
 
 void draw() {
@@ -33,4 +38,23 @@ void draw() {
   rect(5, 260, 30, 10);
   rect(185, 260, 30, 10);
   rect(365, 260, 30, 10);
+  //-------------------------------split---------------------------------------------
+  enemyin.draw(50,80);//for indoor enemy
+  enemyin.draw(110,80);
+  enemyin.draw(240,80);
+  enemyin.draw(300,80);
+  enemyin.draw(50,145);
+  enemyin.draw(110,145);
+  enemyin.draw(240,145);
+  enemyin.draw(300,145);
+  enemyin.draw(50,210);
+  enemyin.draw(110,210);
+  enemyin.draw(240,210);
+  enemyin.draw(300,210);
+  
+  //---------------------------------------split------------------------------
+  enemyout.draw(20,270);
+  enemyout.draw(200,270);
+  enemyout.draw(380,270);
+  
 }
