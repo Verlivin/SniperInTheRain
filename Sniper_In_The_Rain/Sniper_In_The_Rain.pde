@@ -1,10 +1,16 @@
 ENEMYIN[] enemyin;//although they are both enemy, there are two types of animation of death
 ENEMYOUT[] enemyout; //so make two class is easier for me.
 SCOPE scope;
+RAIN[] rain;
+
 
 void setup() {
   size(400, 400);
   noCursor();  //hide mouse
+  rain = new RAIN[500];
+  for(int i = 0; i < 500; i++){
+    rain[i]= new RAIN(random(400),random(400));
+  } 
   scope = new SCOPE();
   enemyin = new ENEMYIN[12];
   enemyout = new ENEMYOUT[3];
@@ -84,6 +90,12 @@ void draw() {
   }
    }
   }
+ //-----------------------------------split------------------------------------
+   for(int l = 0; l < rain.length-1; l++){
+     RAIN r = rain[l];
+       r.display();
+       r.update();
+   }
 //-------------------------------------split----------------------------------
     scope.display();
 }
