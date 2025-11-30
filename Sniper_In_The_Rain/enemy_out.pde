@@ -22,6 +22,22 @@ class ENEMYOUT{
     line(x, y + 66, x + 10, y + 84);
     rect(x - 8, y + 33, 16, 2);
     rect(x - 3, y + 28, 6, 1);
+    strokeWeight(3);
+  line(x + 10, y + 60, x + 25, y + 55); // 枪身
+  line(x + 25, y + 55, x + 25, y + 57); // 枪口
+  strokeWeight(2);
+  }
+  void display2(){
+  fill(0); //dead body
+  triangle(x + 0, y + 55, x - 20, y + 85, x + 20, y + 85);
+  triangle(x - 15, y + 70, x - 25, y + 80, x - 5, y + 75);
+  triangle(x + 10, y + 65, x + 15, y + 75, x + 25, y + 70);
+  fill(255, 0, 0);
+  ellipse(x - 10, y + 63, 4, 4);
+  ellipse(x + 5, y + 67, 3, 3);
+  ellipse(x - 5, y + 75, 5, 5);
+  ellipse(x + 8, y + 80, 4, 4);
+  ellipse(x - 18, y + 73, 3, 3);
   }
 
   void update(){
