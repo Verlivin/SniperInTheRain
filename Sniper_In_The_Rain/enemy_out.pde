@@ -23,8 +23,8 @@ class ENEMYOUT{
     rect(x - 8, y + 33, 16, 2);
     rect(x - 3, y + 28, 6, 1);
     strokeWeight(3);
-  line(x + 10, y + 60, x + 25, y + 55); // 枪身
-  line(x + 25, y + 55, x + 25, y + 57); // 枪口
+  line(x + 10, y + 60, x + 25, y + 55); // there weapon 
+  line(x + 25, y + 55, x + 25, y + 57); 
   strokeWeight(2);
   }
   void display2(){

@@ -8,9 +8,9 @@ class RAIN {
   }
 
   void update() {
-    y += 8;         
+    y += 8;      //rain "drop"   
 
-    if (y > 400) {  
+    if (y > 400) {  //reset rain
       y = 0;     
     }
   }
@@ -19,7 +19,7 @@ class RAIN {
     pushMatrix();
     noStroke();
     translate(x, y);  
-    rotate(radians(100)); 
+    rotate(radians(100)); //rotate a little so it look like rain drop
 
     fill(201, 222, 255);
     rect(0, 0, 20, 3); 

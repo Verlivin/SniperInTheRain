@@ -2,25 +2,28 @@ ENEMYIN[] enemyin;//although they are both enemy, there are two types of animati
 ENEMYOUT[] enemyout; //so make two class is easier for me.
 SCOPE scope;
 RAIN[] rain;
-PImage title,play,win,again;
+CLOCK clock;
+PImage title,play,win,lose,again;
 int stage=0;  //this is going to use for game menu
 int killCount=0;
 
 void setup(){
   size(400, 400);
-  title = loadImage("title.png");
+  title = loadImage("title.png"); //load image
   play = loadImage("play.png");
   win = loadImage("win.png");
+  lose = loadImage("lose.png");
   again = loadImage("again.png");
   rain = new RAIN[500];
   for(int i = 0; i < 500; i++){
-    rain[i]= new RAIN(random(400),random(400));
+    rain[i]= new RAIN(random(400),random(400)); //add 500 rain drop
   } 
+  clock = new CLOCK(375,25);
   scope = new SCOPE();
   enemyin = new ENEMYIN[12];
   enemyout = new ENEMYOUT[3];
   
-  enemyin[0] = new ENEMYIN(50,80);
+  enemyin[0] = new ENEMYIN(50,80);  //have to do this because they are in different location
   enemyin[1] = new ENEMYIN(110,80);
   enemyin[2] = new ENEMYIN(240,80);
   enemyin[3] = new ENEMYIN(300,80);
@@ -39,16 +42,20 @@ void setup(){
 }
 
 void draw() {
-  if(stage ==0){
+  if(stage ==0){  // this the way I choose to switch between stage
     background(0);
     image(title,50,50,300,150);
     fill(255);
     image(play,100,250,200,100);
   }
    //-----------------------------split---------------------------
-  else if(stage==1){
+   //the game
+  else if(stage==1){ 
+    if(clock.timeUp()){
+      stage=3; //lose
+    }
     if(killCount>=15){
-      stage=2;
+      stage=2; //win
     }
     background(31, 20, 50);
     stroke(1);
@@ -81,7 +88,7 @@ void draw() {
     rect(185, 260, 30, 10);
     rect(365, 260, 30, 10);
     //-------------------------------split---------------------------------------------
-    
+    //update indoor enemy
     
     for(int i = 0; i < enemyin.length; i++){
       ENEMYIN e = enemyin[i];
@@ -94,7 +101,7 @@ void draw() {
     }
     
     //---------------------------------------split------------------------------
-   
+   //update outdoor enemy
     for(int j = 0; j < enemyout.length; j++){
       ENEMYOUT m = enemyout[j];
       if(m.alive==true){
@@ -106,27 +113,37 @@ void draw() {
     }
      }
     }
-   //-----------------------------------split------------------------------------
+   //-----------------------------------split------------------------------------\
+   //update rain drop
      for(int l = 0; l < rain.length-1; l++){
        RAIN r = rain[l];
          r.display();
          r.update();
-     }
+     } 
   //-------------------------------------split----------------------------------
       scope.display();
+ //-----------------------------------split----------------------------------
+      clock.update();  //since clock doesn't update outside stage 2 I think it debug itself
    }
   else if(stage==2){
     background(0);
     image(win,50,50,300,150); 
     image(again,150,250,100,100);
   }
+  
+  else if(stage==3){
+    background(0);
+    image(lose,50,50,300,150); 
+    image(again,150,250,100,100);
+  }
   }
 //---------------------------------------split-------------------------------------
 void mousePressed(){
   if(stage==0){
-    if(mouseX>100 && mouseX<300 && mouseY >250 && mouseY <350){
+    if(mouseX>100 && mouseX<300 && mouseY >250 && mouseY <350){ //click start and reset everything
       stage=1;
       killCount=0;
+      clock.reset();
   }
   }
   else if(stage==1){
@@ -146,8 +163,13 @@ void mousePressed(){
    }
   }
   else if(stage == 2){
-    if(mouseX>150 && mouseX<250 && mouseY >250 && mouseY <350){
+    if(mouseX>150 && mouseX<250 && mouseY >250 && mouseY <350){ //click restart
       stage=0;
    }
   }
-}
+   else if(stage == 3){
+    if(mouseX>150 && mouseX<250 && mouseY >250 && mouseY <350){//click restart
+      stage=0;
+   }
+    }
+  }
