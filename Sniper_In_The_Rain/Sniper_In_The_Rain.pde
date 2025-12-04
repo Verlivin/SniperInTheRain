@@ -52,9 +52,11 @@ void draw() {
    //the game
   else if(stage==1){ 
     if(clock.timeUp()){
+      cursor();
       stage=3; //lose
     }
     if(killCount>=15){
+      cursor();
       stage=2; //win
     }
     background(31, 20, 50);
@@ -94,7 +96,6 @@ void draw() {
       ENEMYIN e = enemyin[i];
       if(e.alive==true) {
       e.display();
-      e.update();
     }
     else{
       e.display2();
@@ -106,7 +107,7 @@ void draw() {
       ENEMYOUT m = enemyout[j];
       if(m.alive==true){
         m.display();
-        m.update();
+
       }
       else{
       m.display2();
@@ -119,6 +120,7 @@ void draw() {
        RAIN r = rain[l];
          r.display();
          r.update();
+
      } 
   //-------------------------------------split----------------------------------
       scope.display();
@@ -142,6 +144,7 @@ void mousePressed(){
   if(stage==0){
     if(mouseX>100 && mouseX<300 && mouseY >250 && mouseY <350){ //click start and reset everything
       stage=1;
+      noCursor();
       killCount=0;
       clock.reset();
   }
@@ -163,11 +166,13 @@ void mousePressed(){
    }
   }
   else if(stage == 2){
+    cursor();
     if(mouseX>150 && mouseX<250 && mouseY >250 && mouseY <350){ //click restart
       stage=0;
    }
   }
    else if(stage == 3){
+     cursor();
     if(mouseX>150 && mouseX<250 && mouseY >250 && mouseY <350){//click restart
       stage=0;
    }
